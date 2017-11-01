@@ -1,0 +1,2 @@
+﻿<!-- abc.txt -->
+I can read this file!
