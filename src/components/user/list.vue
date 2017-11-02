@@ -115,9 +115,9 @@
           refresh: true,
           columnPicker: true,
           leftStickyColumns: 1,
-          // "minHeight", "maxHeight" or "height" are important
+          // "minHeight", "maxHeight" or "height" are important(Me: not including header/footer)
           bodyStyle: {
-            maxHeight: '500px'
+            maxHeight: '600px' // if empty, the height is auto
           },
           responsive: false,
           pagination: {
