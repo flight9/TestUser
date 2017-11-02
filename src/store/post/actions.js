@@ -39,19 +39,18 @@ export default {
   },
   uploadTestPost: ({commit}, param) => {
     var formData = new FormData()
-    var image = new Image()
-    // image won't work, especially when image produced at runtime, We have to User Cordova to get this file uploaded.
+    // new Image().src='xxx' won't work, especially when image produced at runtime, We have to User Cordova to get this file uploaded.
     // formData here only support the image from input control in form, eg: replace image with this.$refs.input.files[0]
-    image.src = require('statics/JasonBourne5.jpg')
-    formData.append('file', image)
+    var inputfile = param
+    formData.append('file', inputfile.files[0])
     formData.append('name', 'hello world!')
     axios.post('http://posttestserver.com/post.php?dir=example', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       onUploadProgress: function (e) {
-        // let percentage = Math.round((e.loaded * 100) / e.total) || 0
-        // console.log(e, percentage)
+        let percentage = Math.round((e.loaded * 100) / e.total) || 0
+        console.log(percentage)
       }
     }).then((response) => {
       console.log(response)

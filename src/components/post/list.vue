@@ -59,8 +59,11 @@
       <button @click="clearPosts">Clear All</button>
       <button @click="downPosts(60)">Download</button>
       <button @click="uploadStart">Upload</button>
-      <button @click="uploadTestPost">Upload test post</button>
-      <button @click="readFile">Read file</button>
+      <p>
+        <input type="file" ref="inputfile"/>
+        <button @click="uploadTestPost($refs.inputfile)">Upload A file post</button>
+        <button @click="readFile">Read packed file</button>
+      </p>
 
       <ul v-for="p in posts">
         <li>{{p.title}} <button @click="onEdit(p.id)">Edit</button> <button @click="delPosts([p.id])">Del</button></li>
