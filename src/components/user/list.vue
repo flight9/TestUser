@@ -58,18 +58,18 @@
         :config="config"
         :columns="columns"
         @refresh="refresh"
+        @rowclick="rowClick"
       >
         <!-- 为'message'列设置自定义 renderer  -->
-        <template slot="col-msg" scope="cell">
-          <!--<span class="light-paragraph">{{cell.data}}</span>-->
-          <q-btn>{{cell.data}}</q-btn>
+        <template slot="col-msg" slot-scope="cell">
+          <span class="light-paragraph">{{cell.data}}</span>
         </template>
         <!-- 为'action'列设置自定义 renderer 显示带有自定义行为的按钮 -->
-        <template slot='col-action' scope='cell'>
+        <template slot='col-action' slot-scope='cell'>
           <q-btn color="primary" @click='doSomethingMethod(cell.row.id)'>View</q-btn>
         </template>
         <!-- 当用户选择一行或多行时，自定义 renderer -->
-        <template slot="selection" scope="selection">
+        <template slot="selection" slot-scope="selection">
           <q-btn color="primary" @click="changeMessage(selection)">
             <i>edit</i>
           </q-btn>
@@ -146,12 +146,14 @@
           {
             id: 1234567890,
             date: '2016-10-21',
-            msg: 'This is message 1'
+            msg: 'This is message 1',
+            action: ''
           },
           {
             id: 2,
             date: '2017-10-18',
-            msg: 'That was message 2'
+            msg: 'That was message 2',
+            action: ''
           }
         ],
         columns: [
@@ -192,6 +194,14 @@
             filter: true,
             sort: true,
             type: 'string'
+          },
+          {
+            label: 'Action',
+            field: 'action',
+            width: '40px',
+            filter: false,
+            sort: false,
+            type: 'string'
           }
         ]
       }
@@ -201,6 +211,12 @@
         this.timeout = setTimeout(() => {
           done()
         }, 2000)
+      },
+      doSomethingMethod (param) {
+        alert(param)
+      },
+      rowClick (row) {
+        console.log('clicked on a row', row)
       }
     }
   }
