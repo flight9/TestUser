@@ -78,6 +78,15 @@
           </q-btn>
         </template>
       </q-data-table>
+      <q-alert
+        color="amber"
+        icon="warning"
+        :actions="[{label: 'Snooze', handler: () => {
+          doSomethingMethod('123')
+        }}]"
+      >
+        Some cool message for your users.
+      </q-alert>
     </div>
 
     <!-- Footer
@@ -95,7 +104,8 @@
     QToolbarTitle,
     QBtn,
     QIcon,
-    QDataTable
+    QDataTable,
+    QAlert
   } from 'quasar'
   export default {
     components: {
@@ -104,7 +114,8 @@
       QToolbarTitle,
       QBtn,
       QIcon,
-      QDataTable
+      QDataTable,
+      QAlert
     },
     data () {
       return {
