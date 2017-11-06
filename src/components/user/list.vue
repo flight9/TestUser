@@ -105,7 +105,7 @@
     QBtn,
     QIcon,
     QDataTable,
-    Alert
+    QAlert
   } from 'quasar'
   export default {
     components: {
@@ -115,7 +115,7 @@
       QBtn,
       QIcon,
       QDataTable,
-      Alert
+      QAlert
     },
     data () {
       return {
