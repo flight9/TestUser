@@ -66,7 +66,7 @@
         </template>
         <!-- 为'action'列设置自定义 renderer 显示带有自定义行为的按钮 -->
         <template slot='col-action' slot-scope='cell'>
-          <q-btn color="primary" @click='doSomethingMethod(cell.row.id)'>View</q-btn>
+          <!--需要解决按钮高度超高<q-btn color="primary" @click='doSomethingMethod(cell.row.id)'>View</q-btn>-->
         </template>
         <!-- 当用户选择一行或多行时，自定义 renderer -->
         <template slot="selection" slot-scope="selection">
@@ -121,14 +121,14 @@
       return {
         config: {
           rowHeight: '50px',
-          title: '用户列表(User Table)',
+          // title: '用户列表(User Table)',
           noHeader: false,
-          refresh: true,
-          columnPicker: true,
+          // refresh: true,
+          // columnPicker: true,
           leftStickyColumns: 1,
           // "minHeight", "maxHeight" or "height" are important(Me: not including header/footer)
           bodyStyle: {
-            maxHeight: '600px' // if empty, the height is auto
+            // maxHeight: '500px' // if empty, the height is auto
           },
           responsive: false,
           pagination: {
@@ -153,26 +153,13 @@
             all: '所有'
           }
         },
-        table: [
-          {
-            id: 1234567890,
-            date: '2016-10-21',
-            msg: 'This is message 1',
-            action: ''
-          },
-          {
-            id: 2,
-            date: '2017-10-18',
-            msg: 'That was message 2',
-            action: ''
-          }
-        ],
+        table,
         columns: [
           {
             label: 'Id',
             field: 'id',
             width: '40px',
-            filter: true,
+            filter: false,
             sort: true,
             type: 'number'
           },
@@ -184,7 +171,7 @@
             style: {color: '#ff09fa'},
             // (可选) Column CSS classes
             classes: 'bg-primary',
-            filter: true,
+            filter: false,
             // (可选) 这个列可以排序(Sortable)吗?
             // 注意:如果设为 true, 那么还要指定 type 属性，来告知如何排序
             sort: true,
@@ -195,14 +182,14 @@
             // 把这列原始数据转换为(transforms)另一种格式
             format (value, row) {
               return new Date(value).toLocaleString()
-              // return (new Date()).Format('yyyy-M-d h:m:s')
+              // return (new Date()).Format('yyyy-M-d h:m:s') can't use
             }
           },
           {
             label: 'Message',
             field: 'msg',
             width: '80px',
-            filter: true,
+            filter: false,
             sort: true,
             type: 'string'
           },
@@ -231,6 +218,40 @@
       }
     }
   }
+
+  var table = [
+    {
+      id: 1019,
+      date: '2016-10-21',
+      msg: 'This is message 1',
+      action: ''
+    },
+    {
+      id: 1012,
+      date: '2017-10-18',
+      msg: 'That was message 2',
+      action: ''
+    },
+    {
+      id: 1013,
+      date: '2017-10-28',
+      msg: 'Recall message 3',
+      action: ''
+    },
+    {
+      id: 1013,
+      date: '2017-10-28',
+      msg: 'Recall message 3',
+      action: ''
+    },
+    {
+      id: 1013,
+      date: '2017-10-28',
+      msg: 'Recall message 3',
+      action: ''
+    }
+  ]
+
   // Date.prototype.Format = function (fmt) { // author: meizz
   //   var o = {
   //     'M+': this.getMonth() + 1, // 月份
