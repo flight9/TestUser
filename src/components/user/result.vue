@@ -81,6 +81,13 @@
       ...
     </q-toolbar>
     -->
+    <div>
+    <div class="bg-grey-3 fixed-bottom row group generic-margin" slot="footer">
+      <q-input class="col" v-model="val" stack-label="Reading" inverted color="amber" type="number" :after="[{icon: 'done', handler () {}}]" />
+      <!--<q-input type="number" class="col-9"  value="0"/>-->
+      <!--<q-btn class="col" color="faded">Hi</q-btn>-->
+    </div>
+    </div>
   </q-layout>
 </template>
 
@@ -93,7 +100,8 @@
     QIcon,
     QDataTable,
     QAlert,
-    QModal
+    QModal,
+    QInput
   } from 'quasar'
   export default {
     components: {
@@ -104,7 +112,8 @@
       QIcon,
       QDataTable,
       QAlert,
-      QModal
+      QModal,
+      QInput
     },
     data () {
       return {
