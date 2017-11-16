@@ -67,6 +67,13 @@
           {{cell.data ? 'C' : ''}}
         </template>
       </q-data-table>
+      <q-modal ref="detailModal" :content-css="{padding: '30px', minWidth: '50vw'}">
+        <h5>Detail Result</h5>
+        <p>No. {{pm_no}}</p>
+        <p>NPV: {{npv}}</p>
+        <p>Reading: {{reading}}</p>
+        <q-btn color="primary" @click="$refs.detailModal.close()">Close</q-btn>
+      </q-modal>
     </div>
 
     <!-- Footer
@@ -85,7 +92,8 @@
     QBtn,
     QIcon,
     QDataTable,
-    QAlert
+    QAlert,
+    QModal
   } from 'quasar'
   export default {
     components: {
@@ -95,13 +103,18 @@
       QBtn,
       QIcon,
       QDataTable,
-      QAlert
+      QAlert,
+      QModal
     },
     data () {
       return {
         tableConfig,
         tableColumns,
-        table
+        table,
+        pm_no: '',
+        npv: '',
+        reading: 0,
+        comment: ''
       }
     },
     methods: {
@@ -112,6 +125,10 @@
       },
       rowClick (row) {
         console.log('clicked on a row', row)
+        this.pm_no = row.pm_no
+        this.npv = this.getNPVLabel(row.npv, false)
+        this.reading = row.reading
+        this.$refs.detailModal.open()
       },
       getNPVLabel (npv, short = true) {
         var label = 'N/A'
@@ -138,13 +155,13 @@
     leftStickyColumns: 0,
     // "minHeight", "maxHeight" or "height" are important(Me: not including header/footer)
     bodyStyle: {
-      height: '300px' // if empty, the height is auto
+      height: '350px' // if empty, the height is auto
     },
     responsive: false,
-    pagination: {
-      rowsPerPage: 10,
-      options: [10]
-    },
+    // pagination: {
+    //   rowsPerPage: 10,
+    //   options: [10]
+    // },
     // selection: 'multiple', // or 'single'
     messages: {
       noData: '<i>warning</i> No data available to show.',
